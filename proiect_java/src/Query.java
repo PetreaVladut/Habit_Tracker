@@ -25,6 +25,38 @@ public class Query {
             throw new RuntimeException(e);
         }
     }
+    public void day_query(ArrayList<Entry> aux,int day)
+    {
+        String data=null;
+        data = String.format("select * from java.actions_raw natural join java.day where idDay='%d'",day);
+        System.out.println(data);
+        Statement stmt = null;
+        try {
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery(data);
+            while(rs.next()) {
+                aux.add(new Entry(rs.getString("data"),rs.getInt("idDay")));
+                System.out.println(rs.getString("data"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void delete_day(ArrayList<Entry> aux)
+    {
+        String data=null;
+        PreparedStatement stmt = null;
+        for(int i=0;i<aux.size();i++) {
+            data = String.format("delete from java.actions_raw where idDay=%d and data='%s';", aux.get(i).idDate, aux.get(i).text);
+            System.out.println(data);
+            try {
+                stmt = c.prepareStatement(data);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     public int insert_day()
     {
         String data=null;
@@ -62,6 +94,10 @@ public class Query {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void data_query()
+    {
+
     }
     public Query() {
         try {
