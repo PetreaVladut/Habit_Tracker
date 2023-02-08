@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pie-chart">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/java-swing-pie-chart-main/java-swing-pie-chart-main/dist/pie-chart.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
